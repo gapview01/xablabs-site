@@ -1,0 +1,10 @@
+{
+  "collection": "CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC",
+  "candyMachine": "7rh7wqaJsJ98PCiKisBDiXY8RX8yP3MtZgvC6R1wRTDg",
+  "candyGuard": "Ct7SEuivGo2Z11gUvAPfeQWmR8cAH9ZqJj2aTHetgsKh",
+  "owner": "29LSpc3sEdBCoZNaTv5bt5sGhrLSmdhsVh4NaZqHwxAc",
+  "priceSol": 1,
+  "itemsAvailable": 10,
+  "rpc": "https://solana-rpc.publicnode.com",
+  "network": "mainnet-beta"
+}
