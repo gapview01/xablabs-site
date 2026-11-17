@@ -41,6 +41,11 @@ async function takeScreens() {
   await page.waitForSelector('.open-lightbox');
   await page.screenshot({ path: path.join(outDir, 'celebveg.png') });
 
+  // Mint
+  await page.goto(server.url + '/celebveg/mint', { waitUntil: 'networkidle' });
+  await page.waitForSelector('#connect-button');
+  await page.screenshot({ path: path.join(outDir, 'mint.png') });
+
   // Try to open first piece lightbox; if unavailable, inject minimal markup for screenshot.
   try {
     await page.waitForFunction(() => {
@@ -74,8 +79,23 @@ async function takeScreens() {
       </div>`;
     });
   }
-  await page.waitForSelector('.lightbox');
-  await page.screenshot({ path: path.join(outDir, 'detail.png') });
+  try {
+    await page.waitForSelector('.lightbox', { timeout: 5000 });
+    await page.screenshot({ path: path.join(outDir, 'detail.png') });
+  } catch {
+    // Skip detail shot if lightbox didn't appear
+  }
+
+  // Mobile screenshots
+  const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });
+  await mobile.goto(server.url + '/', { waitUntil: 'networkidle' });
+  await mobile.screenshot({ path: path.join(outDir, 'home-mobile.png') });
+  await mobile.goto(server.url + '/celebveg', { waitUntil: 'networkidle' });
+  await mobile.waitForSelector('.open-lightbox');
+  await mobile.screenshot({ path: path.join(outDir, 'celebveg-mobile.png') });
+  await mobile.goto(server.url + '/celebveg/mint', { waitUntil: 'networkidle' });
+  await mobile.waitForSelector('#connect-button');
+  await mobile.screenshot({ path: path.join(outDir, 'mint-mobile.png') });
 
   await browser.close();
   await server.close();

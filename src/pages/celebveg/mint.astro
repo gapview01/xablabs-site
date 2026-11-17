@@ -1,43 +1,84 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Mascot from '../../components/MascotParsnip.astro';
+import mint from '../../data/mint.json';
 ---
 
 <Base
-  title="Mint CelebVeg wave 1 — 1 SOL"
-  description="Mint one of 10 CelebVeg wave 1 pieces at 1 SOL. Early is best. Connect Phantom to mint."
+  title={`Mint CelebVeg wave 1 — ${mint.priceSol} SOL`}
+  description={`Mint one of 10 CelebVeg wave 1 pieces at ${mint.priceSol} SOL. Early is best. Connect a wallet to mint.`}
   image="/assets/banner_v3.jpg"
 >
-  <section class="hero">
-    <div class="container">
-      <span class="badge">Wave 1 • CelebVeg</span>
-      <h1>Mint now — 1 SOL</h1>
-      <p class="lede">
-        Ten pieces. Then wave 1 is history (again). Every later wave costs more.
-        <strong>Early is best.</strong>
-      </p>
+  <section class="hero bg-blobs">
+    <div class="container layout">
+      <div>
+        <span class="badge">Wave 1 • CelebVeg</span>
+        <h1>Mint — {mint.priceSol} SOL</h1>
+        <p class="lede">Ten pieces. Then it’s history. Early is best.</p>
+        <div class="cta">
+          <a class="btn" href="#mint-ui">Go to mint</a>
+          <a class="btn secondary" href="/celebveg">See the collection</a>
+        </div>
+      </div>
+      <Mascot size="sm" id="mint-mascot" />
     </div>
   </section>
 
   <section class="container mt-6">
-    <div class="stack" style="max-width:36rem">
-      <div class="badge-cream">
-        <span id="mint-remaining">–</span> / <span id="mint-available">10</span> remaining
+    <div class="stack" style="max-width:38rem">
+      <div class="frame">
+        <div class="inner">
+          <img src="/celebveg/thumbs/0001.webp" alt="Featured: NAPOLEON BONAPART-SNIP" loading="lazy" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+        </div>
       </div>
-      <p>Price is 1 SOL, paid to the Xab Labs wallet, plus about 0.003 SOL in network fees.</p>
-      <p class="muted">
-        Collection: <a id="collection-link" href="https://explorer.solana.com/address/CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC" target="_blank" rel="noopener">CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC</a>
-      </p>
-      <p>
-        Wallet: <strong id="wallet-address">Not connected</strong>
-      </p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <button id="connect-button" class="btn secondary" type="button">Connect Phantom</button>
-        <button id="mint-button" class="btn" type="button" disabled>Mint now — 1 SOL</button>
+      <div class="badge-cream" aria-live="polite">
+        <strong><span id="mint-remaining">–</span> / <span id="mint-available">10</span></strong> remaining
       </div>
-      <p id="mint-message">Connect Phantom to mint.</p>
-      <p style="display:none;">
-        <a id="mint-explorer" class="btn secondary" href="#" target="_blank" rel="noopener">View your piece on Solana Explorer</a>
-      </p>
+      <div role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-label="Mint progress" style="height:10px; background:var(--bg-soft); border:1px solid rgba(13,29,80,.08); border-radius:999px; overflow:hidden;">
+        <div id="mint-progress" style="height:100%; width:0%; background:linear-gradient(90deg, var(--blue), var(--accent-purple));"></div>
+      </div>
+
+      <p>Price is {mint.priceSol} SOL, paid to the Xab Labs wallet, plus about 0.003 SOL in network fees.</p>
+      <div class="trustbar">
+        <div class="row">
+          <div><strong>Collection</strong></div>
+          <code class="mono" id="collection-address">CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC</code>
+          <a class="btn secondary" id="collection-link" href="https://explorer.solana.com/address/CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC" target="_blank" rel="noopener">Explorer</a>
+          <button class="btn copy" type="button" data-copy="#collection-address">Copy</button>
+        </div>
+        <div class="row" style="color:#cbd5e1">
+          <div>Metaplex Core on Solana • 3% royalties • Arweave storage • Paid directly to Xab Labs</div>
+        </div>
+      </div>
+
+      <div id="mint-ui" class="card" style="padding:12px;">
+        <p class="mt-2" style="margin:0 0 8px 0;">Wallet: <strong id="wallet-address">Not connected</strong></p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button id="connect-button" class="btn secondary" type="button">Connect wallet</button>
+          <button id="mint-button" class="btn" type="button" disabled>Mint — {mint.priceSol} SOL</button>
+        </div>
+        <div id="wallet-picker" style="display:none; margin-top:10px; gap:8px; flex-wrap:wrap;" class="stack"></div>
+        <div id="mobile-deeplinks" class="mt-3" style="display:none; gap:8px; flex-wrap:wrap;">
+          <a id="open-phantom" class="btn secondary" href="#" target="_blank" rel="noopener">Open in Phantom</a>
+          <a id="open-solflare" class="btn secondary" href="#" target="_blank" rel="noopener">Open in Solflare</a>
+        </div>
+        <p id="mint-message" class="mt-2">Connect a Solana wallet to mint.</p>
+        <p style="display:none;">
+          <a id="mint-explorer" class="btn secondary" href="#" target="_blank" rel="noopener">View your piece on Solana Explorer</a>
+        </p>
+      </div>
+
+      <details class="mt-4">
+        <summary><strong>FAQ</strong></summary>
+        <div class="stack mt-2">
+          <p><strong>What is this?</strong><br/>CelebVeg is a Solana NFT collection where long‑dead historical figures are reduced to photorealistic produce and objects. It is funny on purpose.</p>
+          <p><strong>How do I mint?</strong><br/>Connect a wallet and press Mint. You will approve the transaction in your wallet.</p>
+          <p><strong>Which wallet?</strong><br/>Any Solana wallet: Phantom, Solflare, Backpack, MetaMask (Solana).</p>
+          <p><strong>What’s a wave?</strong><br/>We release in waves. Wave 1: 10 pieces at 1 SOL. Every later wave costs more. Early is best.</p>
+          <p><strong>Is it safe?</strong><br/>You approve every transaction in your wallet. We will never ask for your seed phrase.</p>
+        </div>
+      </details>
+
       <p class="mt-6">
         <a class="btn secondary" href="/celebveg">← Back to the collection</a>
       </p>
