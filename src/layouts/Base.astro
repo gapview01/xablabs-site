@@ -10,6 +10,9 @@ const {
   image = '/assets/banner_v3.jpg',
 } = Astro.props as Props;
 const absoluteImage = new URL(image, Astro.site).href;
+const redirectHost = 'https://xablabs.lovable.app';
+const redirectPath = Astro.url.pathname;
+const redirectHref = redirectHost + redirectPath;
 ---
 
 <!doctype html>
@@ -27,6 +30,8 @@ const absoluteImage = new URL(image, Astro.site).href;
       href="https://fonts.googleapis.com/css2?family=Titan+One&family=Space+Grotesk:wght@400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="canonical" href={redirectHref} />
+    <meta http-equiv="refresh" content={`0; url=${redirectHref}`} />
     <link rel="stylesheet" href="/styles/global.css" />
     <title>{title}</title>
 
@@ -41,8 +46,17 @@ const absoluteImage = new URL(image, Astro.site).href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteImage} />
+    <script is:inline>
+      (function () {
+        var to = 'https://xablabs.lovable.app' + location.pathname + location.search + location.hash;
+        try { location.replace(to); } catch { location.href = to; }
+      })();
+    </script>
   </head>
   <body>
+    <div style="position:fixed;inset:auto 0 0 0;padding:.5rem 1rem;background:#fff6e5;color:#0b1020;border-top:1px solid rgba(13,29,80,.12);font:13px/1.4 ui-sans-serif,system-ui,sans-serif;z-index:9999">
+      Redirecting to <a href={redirectHref} style="font-weight:700">{redirectHref}</a> …
+    </div>
     <header class="site">
       <div class="container wrap">
         <a class="brand" href="/">Xab Labs</a>
