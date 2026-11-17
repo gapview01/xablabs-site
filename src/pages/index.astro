@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Xab Labs — NFT Co. Revitalising NFTs with fresh, powerful stories."
+  description="Xab Labs creates entertainment-first NFT collections on Solana. Bold, playful, fast."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">NFT Co.</span>
+      <h1>Revitalising NFTs with fresh, powerful stories.</h1>
+      <p class="lede">
+        Xab Labs builds entertainment-first collections. Vivid art, sharp concepts, and joyful drops
+        that make people smile. Fast to load, great to share.
+      </p>
+      <div class="cta">
+        <a class="btn icon" href="/celebveg">Explore CelebVeg →</a>
+        <a class="btn secondary icon" href="https://x.com/xablabs" target="_blank" rel="noopener">Follow @xablabs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mt-8">
+    <div class="card" style="display:grid; grid-template-columns:1fr; gap:0;">
+      <picture>
+        <source srcset="/assets/banner_v3.jpg" type="image/jpeg" />
+        <img src="/assets/banner_v3.jpg" alt="CelebVeg banner" loading="lazy" />
+      </picture>
+      <div style="padding:18px 16px;">
+        <h2 class="section-title">CelebVeg</h2>
+        <p class="mt-2">
+          Photorealistic long-dead historical figures turned into vegetables, fruit and household objects,
+          with pun names and deadpan descriptions. It's entertainment, and it should make you laugh.
+        </p>
+        <div class="mt-3">
+          <a class="btn" href="/celebveg">See wave 1 (10 pieces) →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

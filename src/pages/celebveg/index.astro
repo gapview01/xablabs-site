@@ -1,0 +1,141 @@
+---
+import Base from '../../layouts/Base.astro';
+import pieces from '../../data/celebveg.json';
+
+const title = 'CelebVeg — History’s greatest figures have been… reduced.';
+const description =
+  "Photorealistic long-dead historical figures turned into vegetables, fruit and objects. Wave 1: 10 pieces on Solana at 1 SOL each. Early is best.";
+---
+
+<Base title={title} description={description} image="/assets/banner_v3.jpg">
+  <section class="hero">
+    <div class="container">
+      <span class="badge">By Xab Labs</span>
+      <h1>History’s greatest figures have been… reduced.</h1>
+      <p class="lede">
+        Photorealistic long-dead historical figures turned into vegetables, fruit and household objects,
+        with pun names and deadpan descriptions.
+      </p>
+      <div class="cta">
+        <span class="badge-cream">2,000 total • 3% royalties • Marketplace-agnostic</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mt-6">
+    <h2 class="section-title">Wave 1 — 10 pieces</h2>
+    <p class="mt-2 mb-6">1 SOL each. Every later wave costs more. Early is best.</p>
+
+    <div class="grid">
+      {pieces.map((p, i) => (
+        <article class="card piece" data-index={i}>
+          <a href={"#piece-" + p.id} class="open-lightbox" aria-label={"Open " + p.name}>
+            <img
+              src={p.thumb}
+              alt={p.name}
+              loading="lazy"
+              width="720"
+              height="720"
+              style="aspect-ratio:1/1; object-fit:cover;"
+            />
+          </a>
+          <div class="meta">
+            <div class="name">{p.name}</div>
+            <div class="desc">{p.shortDescription || p.description}</div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container mt-10">
+    <h2 class="section-title">How it works / Waves</h2>
+    <div class="stack">
+      <p>
+        CelebVeg is one collection with <strong>2,000 total pieces</strong>, released in waves.
+        Wave 1 has <strong>10 pieces at 1 SOL each</strong>. Every later wave costs more. <strong>Early is best.</strong>
+      </p>
+      <p>
+        Royalties are <strong>3%</strong>. Marketplace-agnostic: likely Magic Eden, maybe Tensor.
+      </p>
+    </div>
+  </section>
+
+  <section class="container mt-8">
+    <h2 class="section-title">Mint</h2>
+    <p class="mt-2">Mint opening soon.</p>
+    <div class="mt-3" style="display:flex; flex-wrap:wrap; gap:12px;">
+      <a class="btn disabled" aria-disabled="true" href="#" role="button">Magic Eden</a>
+      <a class="btn secondary disabled" aria-disabled="true" href="#" role="button">Tensor</a>
+    </div>
+  </section>
+
+  <section class="container mt-10 center">
+    <p class="mt-3">
+      Follow <a class="btn secondary" href="https://x.com/xablabs" target="_blank" rel="noopener">@xablabs</a>
+    </p>
+    <p class="mt-2 muted">CelebVeg by Xab Labs</p>
+  </section>
+
+  <div id="lightbox-root"></div>
+
+  <script define:vars={{ pieces }}>
+    const root = document.getElementById('lightbox-root')!;
+    function open(index) {
+      const p = pieces[index];
+      if (!p) return;
+      root.innerHTML = `
+      <div class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+        <div class="panel">
+          <header>
+            <h3 id="lb-title">${p.name}</h3>
+            <button class="btn secondary" data-close-lightbox>Close</button>
+          </header>
+          <div class="body">
+            <div class="img"><img src="${p.image}" alt="${p.name}" /></div>
+            <div class="details">
+              <div class="badge-cream">Wave 1 • 1 SOL • 3% royalties</div>
+              <p class="mt-3">${p.description}</p>
+              <div class="attrs mt-4">
+                ${(p.attributes || [])
+                  .map(
+                    (a) => `<div class="attr"><strong>${a.trait_type || a.traitType}:</strong> ${a.value}</div>`
+                  )
+                  .join('')}
+              </div>
+              <div class="mt-6" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn disabled" aria-disabled="true" href="#" role="button">Magic Eden</a>
+                <a class="btn secondary disabled" aria-disabled="true" href="#" role="button">Tensor</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+      const closeBtn = root.querySelector('[data-close-lightbox]');
+      closeBtn?.addEventListener('click', () => {
+        root.innerHTML = '';
+        history.replaceState(null, '', location.pathname + location.search);
+      });
+    }
+
+    // Expose for testing/screenshot tooling
+    // @ts-ignore
+    window.__openLightbox = open;
+
+    document.querySelectorAll('.open-lightbox').forEach((el, idx) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open(idx);
+        history.replaceState(null, '', '#piece-' + pieces[idx].id);
+      });
+    });
+
+    // Open from hash
+    if (location.hash.startsWith('#piece-')) {
+      const id = location.hash.replace('#piece-', '');
+      const idx = pieces.findIndex((p) => String(p.id) === id);
+      if (idx >= 0) open(idx);
+    }
+  </script>
+</Base>
+

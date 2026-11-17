@@ -1,0 +1,302 @@
+[
+  {
+    "id": "0001",
+    "name": "NAPOLEON BONAPART-SNIP",
+    "description": "Crowned himself emperor of the root cellar, then retreated because the butter was too cold. Still insists the bicorne makes him look taller.",
+    "shortDescription": "Crowned himself emperor of the root cellar, then retreated because the butter was too cold. Still insists the bicorne…",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Parsnip"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Vegetable"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Napoleon Bonaparte"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Napoleonic"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0001.png",
+    "thumb": "/celebveg/thumbs/0001.webp"
+  },
+  {
+    "id": "0002",
+    "name": "CLEOPEACHTRA",
+    "description": "Floated down the Nile on her own fuzz. One bite and Rome forgets what it came for.",
+    "shortDescription": "Floated down the Nile on her own fuzz. One bite and Rome forgets what it came for.",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Peach"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Fruit"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Cleopatra"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Ancient"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Africa"
+      }
+    ],
+    "image": "/celebveg/originals/0002.png",
+    "thumb": "/celebveg/thumbs/0002.webp"
+  },
+  {
+    "id": "0003",
+    "name": "ABRAHAM LIME-COLN",
+    "description": "Four score and seven squeezes ago. The stovepipe is simply the tallest lime in the crate.",
+    "shortDescription": "Four score and seven squeezes ago. The stovepipe is simply the tallest lime in the crate.",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Lime"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Fruit"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Abraham Lincoln"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Mid 19th Century"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Americas"
+      }
+    ],
+    "image": "/celebveg/originals/0003.png",
+    "thumb": "/celebveg/thumbs/0003.webp"
+  },
+  {
+    "id": "0004",
+    "name": "ARCHIMEDEAS",
+    "description": "Shouted Eureka so hard it left a dent in the copper. The screw was a bonus invention for the olives.",
+    "shortDescription": "Shouted Eureka so hard it left a dent in the copper. The screw was a bonus invention for the olives.",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Bathtub"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Appliance"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Archimedes"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Ancient"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0004.png",
+    "thumb": "/celebveg/thumbs/0004.webp"
+  },
+  {
+    "id": "0005",
+    "name": "VINCENT VAN GRAPE",
+    "description": "Painted the starry night and then rolled it into jam. The stem was a rough morning. The palette never recovered.",
+    "shortDescription": "Painted the starry night and then rolled it into jam. The stem was a rough morning. The palette never recovered.",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Grape"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Fruit"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Vincent van Gogh"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Late 19th Century"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0005.png",
+    "thumb": "/celebveg/thumbs/0005.webp"
+  },
+  {
+    "id": "0006",
+    "name": "JOAN OF KALE",
+    "description": "Heard voices in the crisper drawer. Led France to victory and still washed the leaves twice. Do not ask her about the dressing.",
+    "shortDescription": "Heard voices in the crisper drawer. Led France to victory and still washed the leaves twice. Do not ask her about the…",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Kale"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Vegetable"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Joan of Arc"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Medieval"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0006.png",
+    "thumb": "/celebveg/thumbs/0006.webp"
+  },
+  {
+    "id": "0007",
+    "name": "ALEXANDER THE GRATE",
+    "description": "Wept when there were no more cheeses left to shred. Named thirteen cities after himself and none of them after the parmesan.",
+    "shortDescription": "Wept when there were no more cheeses left to shred. Named thirteen cities after himself and none of them after the pa…",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Cheese grater"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Kitchenware"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Alexander the Great"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Ancient"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0007.png",
+    "thumb": "/celebveg/thumbs/0007.webp"
+  },
+  {
+    "id": "0008",
+    "name": "FRANCIS BACON",
+    "description": "The father of empiricism, and of the full English. He always suspected the name would catch up with him.",
+    "shortDescription": "The father of empiricism, and of the full English. He always suspected the name would catch up with him.",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Bacon"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Other"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Francis Bacon"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Renaissance"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0008.png",
+    "thumb": "/celebveg/thumbs/0008.webp"
+  },
+  {
+    "id": "0009",
+    "name": "SIR FRANCIS DRAKE",
+    "description": "Circumnavigated the globe and still couldn't outrun the surname. The Armada was a lot of fuss. The bill was mostly breadcrumbs.",
+    "shortDescription": "Circumnavigated the globe and still couldn't outrun the surname. The Armada was a lot of fuss. The bill was mostly br…",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Drake (duck)"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Animal"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Francis Drake"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Elizabethan"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0009.png",
+    "thumb": "/celebveg/thumbs/0009.webp"
+  },
+  {
+    "id": "0010",
+    "name": "LUDWIG VAN BEET",
+    "description": "Nine symphonies and one permanent earthy stain. By the fifth beet, everyone can hear the knocking.",
+    "shortDescription": "Nine symphonies and one permanent earthy stain. By the fifth beet, everyone can hear the knocking.",
+    "attributes": [
+      {
+        "trait_type": "Object",
+        "value": "Beetroot"
+      },
+      {
+        "trait_type": "Object Type",
+        "value": "Vegetable"
+      },
+      {
+        "trait_type": "Figure",
+        "value": "Ludwig van Beethoven"
+      },
+      {
+        "trait_type": "Era",
+        "value": "Early 19th Century"
+      },
+      {
+        "trait_type": "Region",
+        "value": "Europe"
+      }
+    ],
+    "image": "/celebveg/originals/0010.png",
+    "thumb": "/celebveg/thumbs/0010.webp"
+  }
+]

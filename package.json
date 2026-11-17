@@ -1,0 +1,24 @@
+{
+  "name": "xab-labs-site",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "generate": "node scripts/build-celebveg-data.mjs",
+    "build": "npm run generate && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "screenshot": "node scripts/screenshot.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.4.12"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5",
+    "serve-handler": "^6.1.5",
+    "playwright": "^1.48.2"
+  }
+}

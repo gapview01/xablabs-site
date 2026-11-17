@@ -1,0 +1,29 @@
+{
+  "name": "JOAN OF KALE",
+  "symbol": "CVEG",
+  "description": "Heard voices in the crisper drawer. Led France to victory and still washed the leaves twice. Do not ask her about the dressing.",
+  "image": "0006.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Kale"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Vegetable"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Joan of Arc"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Medieval"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}

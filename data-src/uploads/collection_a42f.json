@@ -1,0 +1,89 @@
+{
+  "name": "CelebVeg",
+  "symbol": "CVEG",
+  "description": "CelebVeg by Xab Labs is a single collection of 2,000 long-dead historical figures reimagined as vegetables, fruit, animals and household objects, each with a genuinely funny pun name. Pieces are released in waves from this one collection \u2014 the first 10 at 1 SOL, with later waves at rising prices. 3% royalties on secondary sales. One object and one figure per piece, never repeated.",
+  "image": "cover_v3.png",
+  "banner": "banner_v3.png",
+  "seller_fee_basis_points": 300,
+  "external_url": "https://xablabs.io",
+  "properties": {
+    "files": [
+      {
+        "uri": "cover_v3.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "banner_v3.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "cover_v3.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "banner_v3.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "cover_v2.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "banner_v2.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "cover_titled.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "banner_titled.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "cover.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "banner.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "REPLACE_WITH_CREATOR_WALLET",
+        "share": 100
+      }
+    ],
+    "seller": "Xab Labs",
+    "links": {
+      "website": "https://xablabs.io",
+      "x": "https://x.com/xablabs"
+    }
+  },
+  "attributes": [
+    {
+      "trait_type": "Total Supply",
+      "value": "2000"
+    },
+    {
+      "trait_type": "Release",
+      "value": "Waves from one collection"
+    },
+    {
+      "trait_type": "First Wave",
+      "value": "10 at 1 SOL"
+    },
+    {
+      "trait_type": "Royalties",
+      "value": "3%"
+    },
+    {
+      "trait_type": "Brand",
+      "value": "Xab Labs"
+    }
+  ],
+  "seller": "Xab Labs",
+  "twitter": "https://x.com/xablabs"
+}

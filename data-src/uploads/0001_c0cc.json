@@ -1,0 +1,29 @@
+{
+  "name": "NAPOLEON BONAPART-SNIP",
+  "symbol": "CVEG",
+  "description": "Crowned himself emperor of the root cellar, then retreated because the butter was too cold. Still insists the bicorne makes him look taller.",
+  "image": "0001.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Parsnip"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Vegetable"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Napoleon Bonaparte"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Napoleonic"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "VINCENT VAN GRAPE",
+  "symbol": "CVEG",
+  "description": "Painted the starry night and then rolled it into jam. The stem was a rough morning. The palette never recovered.",
+  "image": "0005.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Grape"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Fruit"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Vincent van Gogh"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Late 19th Century"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}
