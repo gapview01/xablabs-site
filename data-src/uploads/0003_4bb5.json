@@ -1,0 +1,29 @@
+{
+  "name": "ABRAHAM LIME-COLN",
+  "symbol": "CVEG",
+  "description": "Four score and seven squeezes ago. The stovepipe is simply the tallest lime in the crate.",
+  "image": "0003.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Lime"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Fruit"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Abraham Lincoln"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Mid 19th Century"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Americas"
+    }
+  ]
+}

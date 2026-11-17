@@ -1,0 +1,29 @@
+{
+  "name": "FRANCIS BACON",
+  "symbol": "CVEG",
+  "description": "The father of empiricism, and of the full English. He always suspected the name would catch up with him.",
+  "image": "0008.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Bacon"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Other"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Francis Bacon"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Renaissance"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "ALEXANDER THE GRATE",
+  "symbol": "CVEG",
+  "description": "Wept when there were no more cheeses left to shred. Named thirteen cities after himself and none of them after the parmesan.",
+  "image": "0007.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Cheese grater"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Kitchenware"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Alexander the Great"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Ancient"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}

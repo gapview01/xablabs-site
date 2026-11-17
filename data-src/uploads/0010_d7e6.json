@@ -1,0 +1,29 @@
+{
+  "name": "LUDWIG VAN BEET",
+  "symbol": "CVEG",
+  "description": "Nine symphonies and one permanent earthy stain. By the fifth beet, everyone can hear the knocking.",
+  "image": "0010.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Beetroot"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Vegetable"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Ludwig van Beethoven"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Early 19th Century"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}

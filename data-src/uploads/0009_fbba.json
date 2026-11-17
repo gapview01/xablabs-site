@@ -1,0 +1,29 @@
+{
+  "name": "SIR FRANCIS DRAKE",
+  "symbol": "CVEG",
+  "description": "Circumnavigated the globe and still couldn't outrun the surname. The Armada was a lot of fuss. The bill was mostly breadcrumbs.",
+  "image": "0009.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Drake (duck)"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Animal"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Francis Drake"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Elizabethan"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}

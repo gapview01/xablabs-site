@@ -1,0 +1,29 @@
+{
+  "name": "CLEOPEACHTRA",
+  "symbol": "CVEG",
+  "description": "Floated down the Nile on her own fuzz. One bite and Rome forgets what it came for.",
+  "image": "0002.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Peach"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Fruit"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Cleopatra"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Ancient"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Africa"
+    }
+  ]
+}

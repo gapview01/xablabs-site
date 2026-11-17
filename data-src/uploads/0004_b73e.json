@@ -1,0 +1,29 @@
+{
+  "name": "ARCHIMEDEAS",
+  "symbol": "CVEG",
+  "description": "Shouted Eureka so hard it left a dent in the copper. The screw was a bonus invention for the olives.",
+  "image": "0004.png",
+  "seller_fee_basis_points": 300,
+  "attributes": [
+    {
+      "trait_type": "Object",
+      "value": "Bathtub"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Appliance"
+    },
+    {
+      "trait_type": "Figure",
+      "value": "Archimedes"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Ancient"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Europe"
+    }
+  ]
+}
