@@ -1,0 +1,25 @@
+---
+const host = 'https://xablabs.lovable.app';
+const canonical = host + '/';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting…</title>
+    <link rel="canonical" href={canonical} />
+    <meta http-equiv="refresh" content={`0; url=${canonical}`} />
+    <style>body{font-family:ui-sans-serif,system-ui,sans-serif;padding:2rem;}</style>
+    <script is:inline>
+      (function () {
+        var to = 'https://xablabs.lovable.app' + location.pathname + location.search + location.hash;
+        try { location.replace(to); } catch { location.href = to; }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting… If nothing happens, go to <a href={canonical}>{canonical}</a>.</p>
+  </body>
+</html>
+

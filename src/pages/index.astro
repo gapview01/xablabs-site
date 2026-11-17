@@ -1,42 +1,26 @@
 ---
-import Base from '../layouts/Base.astro';
-import Mascot from '../components/MascotParsnip.astro';
-import mint from '../data/mint.json';
+const target = 'https://xablabs.lovable.app/';
 ---
-
-<Base
-  title="Xab Labs — NFT Co. Revitalising NFTs with fresh, powerful stories."
-  description="Xab Labs creates entertainment-first NFT collections on Solana. Bold, playful, fast."
->
-  <section class="hero bg-blobs">
-    <div class="container layout">
-      <div>
-        <span class="badge">NFT Co.</span>
-        <h1>History, but make it veg.</h1>
-        <p class="lede">Bold art. Sharp jokes. On Solana.</p>
-        <div class="cta">
-          <a class="btn icon" href="/celebveg/mint">Mint — {mint.priceSol} SOL</a>
-          <a class="btn secondary icon" href="/celebveg">See the collection</a>
-          <a class="btn secondary icon" href="https://x.com/xablabs" target="_blank" rel="noopener">Follow @xablabs</a>
-        </div>
-      </div>
-      <Mascot size="lg" />
-    </div>
-  </section>
-
-  <section class="container mt-8">
-    <div class="card" style="display:grid; grid-template-columns:1fr; gap:0;">
-      <picture>
-        <source srcset="/assets/banner_v3.jpg" type="image/jpeg" />
-        <img src="/assets/banner_v3.jpg" alt="CelebVeg banner" loading="lazy" />
-      </picture>
-      <div style="padding:18px 16px;">
-        <h2 class="section-title">CelebVeg</h2>
-        <p class="mt-2">Long‑dead icons, reduced to fruit, veg and objects. Deadpan. Photoreal.</p>
-        <div class="mt-3">
-          <a class="btn" href="/celebveg">See wave 1 (10 pieces) →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</Base>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting…</title>
+    <link rel="canonical" href={target} />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <style>
+      body { font-family: ui-sans-serif, system-ui, sans-serif; padding: 2rem; }
+    </style>
+    <script is:inline>
+      (function () {
+        var url = new URL(location.href);
+        var to = 'https://xablabs.lovable.app' + url.pathname + url.search + url.hash;
+        location.replace(to);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>{target}</a>…</p>
+  </body>
+</html>
