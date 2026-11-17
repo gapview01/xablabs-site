@@ -1,19 +1,26 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Mascot from '../../components/MascotParsnip.astro';
+import mint from '../../data/mint.json';
 ---
 
 <Base
-  title="Mint CelebVeg wave 1 — 1 SOL"
-  description="Mint one of 10 CelebVeg wave 1 pieces at 1 SOL. Early is best. Connect Phantom to mint."
+  title={`Mint CelebVeg wave 1 — ${mint.priceSol} SOL`}
+  description={`Mint one of 10 CelebVeg wave 1 pieces at ${mint.priceSol} SOL. Early is best. Connect a wallet to mint.`}
   image="/assets/banner_v3.jpg"
 >
-  <section class="hero">
-    <div class="container">
-      <span class="badge">Wave 1 • CelebVeg</span>
-      <h1>Mint now — 1 SOL</h1>
-      <p class="lede">
-        Ten pieces. Then wave 1 is history (again). Every later wave costs more. <strong>Early is best.</strong>
-      </p>
+  <section class="hero bg-blobs">
+    <div class="container layout">
+      <div>
+        <span class="badge">Wave 1 • CelebVeg</span>
+        <h1>Mint — {mint.priceSol} SOL</h1>
+        <p class="lede">Ten pieces. Then it’s history. Early is best.</p>
+        <div class="cta">
+          <a class="btn" href="#mint-ui">Go to mint</a>
+          <a class="btn secondary" href="/celebveg">See the collection</a>
+        </div>
+      </div>
+      <Mascot size="sm" id="mint-mascot" />
     </div>
   </section>
 
@@ -31,7 +38,7 @@ import Base from '../../layouts/Base.astro';
         <div id="mint-progress" style="height:100%; width:0%; background:linear-gradient(90deg, var(--blue), var(--accent-purple));"></div>
       </div>
 
-      <p>Price is 1 SOL, paid to the Xab Labs wallet, plus about 0.003 SOL in network fees.</p>
+      <p>Price is {mint.priceSol} SOL, paid to the Xab Labs wallet, plus about 0.003 SOL in network fees.</p>
       <div class="trustbar">
         <div class="row">
           <div><strong>Collection</strong></div>
@@ -40,15 +47,15 @@ import Base from '../../layouts/Base.astro';
           <button class="btn copy" type="button" data-copy="#collection-address">Copy</button>
         </div>
         <div class="row" style="color:#cbd5e1">
-          <div>Metaplex Core on Solana • 3% royalties • Paid directly to Xab Labs</div>
+          <div>Metaplex Core on Solana • 3% royalties • Arweave storage • Paid directly to Xab Labs</div>
         </div>
       </div>
 
-      <div class="card" style="padding:12px;">
+      <div id="mint-ui" class="card" style="padding:12px;">
         <p class="mt-2" style="margin:0 0 8px 0;">Wallet: <strong id="wallet-address">Not connected</strong></p>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
           <button id="connect-button" class="btn secondary" type="button">Connect wallet</button>
-          <button id="mint-button" class="btn" type="button" disabled>Mint now — 1 SOL</button>
+          <button id="mint-button" class="btn" type="button" disabled>Mint — {mint.priceSol} SOL</button>
         </div>
         <div id="wallet-picker" style="display:none; margin-top:10px; gap:8px; flex-wrap:wrap;" class="stack"></div>
         <div id="mobile-deeplinks" class="mt-3" style="display:none; gap:8px; flex-wrap:wrap;">

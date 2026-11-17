@@ -1,22 +1,24 @@
-/* Buffer polyfill for browser environments */
-import { Buffer } from 'buffer';
-// @ts-ignore
-if (typeof (globalThis as any).Buffer === 'undefined') {
-  // @ts-ignore
-  (globalThis as any).Buffer = Buffer;
-}
+// Avoid relying on global Buffer injection; libraries import 'buffer' directly when needed.
 
 import mintConfigJson from '../data/mint.json';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
-import { WalletReadyState, type WalletAdapter } from '@solana/wallet-adapter-base';
+import { BaseMessageSignerWalletAdapter, WalletReadyState, type WalletAdapter } from '@solana/wallet-adapter-base';
+import { isWalletAdapterCompatibleStandardWallet } from '@solana/wallet-adapter-base';
 // Optional adapters for standard wallets
 // These are light wrappers around injected wallets and only load if present.
 // They enable Solflare and Backpack in addition to Phantom.
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { SolflareWalletAdapter, BackpackWalletAdapter } from '@solana/wallet-adapter-wallets';
+// Lightweight specific adapters
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
+// Backpack is a separate adapter package
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { BackpackWalletAdapter } from '@solana/wallet-adapter-backpack';
 // Wallet Standard detection (used for presence checks and future extensibility)
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getWallets } from '@wallet-standard/app';
+import { StandardConnect, StandardDisconnect } from '@wallet-standard/features';
+import { SolanaSignTransaction } from '@solana/wallet-standard-features';
 import { createUmi, generateSigner, publicKey, some } from '@metaplex-foundation/umi';
 import type { Umi } from '@metaplex-foundation/umi';
 import { mplCore } from '@metaplex-foundation/mpl-core';
@@ -27,7 +29,7 @@ import {
 } from '@metaplex-foundation/mpl-core-candy-machine';
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
 import { setComputeUnitLimit } from '@metaplex-foundation/mpl-toolbox';
-import { PublicKey as Web3PublicKey } from '@solana/web3.js';
+import { PublicKey as Web3PublicKey, Transaction, VersionedTransaction } from '@solana/web3.js';
 
 type MintConfig = {
   collection: string;
@@ -156,7 +158,7 @@ export function initMintPage(): void {
   })();
 
   // Build wallet list using adapters; only show installed or loadable
-  const adapters: WalletAdapter[] = [
+  const baseAdapters: WalletAdapter[] = [
     new PhantomWalletAdapter(),
     new SolflareWalletAdapter({ network: mintConfig.network as any }),
     new BackpackWalletAdapter(),
@@ -176,7 +178,19 @@ export function initMintPage(): void {
   function renderPicker(): void {
     if (!pickerEl) return;
     pickerEl.innerHTML = '';
-    const list = sortAdapters(adapters);
+    // Compose list: explicit adapters + Wallet Standard detected wallets (wrapped)
+    const detected = getWallets()?.get?.() ?? [];
+    const explicitNames = new Set(baseAdapters.map((a) => a.name.toLowerCase()));
+    const standardWrapped: WalletAdapter[] = [];
+    for (const w of detected) {
+      try {
+        if (!isWalletAdapterCompatibleStandardWallet(w)) continue;
+        const n = String(w.name || '').toLowerCase();
+        if (explicitNames.has(n)) continue;
+        standardWrapped.push(createStandardAdapter(w));
+      } catch {}
+    }
+    const list = sortAdapters([...baseAdapters, ...standardWrapped]);
     if (list.length === 0) {
       pickerEl.style.display = 'none';
       return;
@@ -192,6 +206,69 @@ export function initMintPage(): void {
       });
       pickerEl.appendChild(btn);
     }
+  }
+
+  function createStandardAdapter(w: any): WalletAdapter {
+    class StdAdapter extends BaseMessageSignerWalletAdapter {
+      name = String(w.name || 'Wallet');
+      url = (w.url as string) || '';
+      icon = (w.icon as string) || '';
+      readyState = WalletReadyState.Installed;
+      connecting = false;
+      supportedTransactionVersions: ReadonlySet<any> | null = null;
+      private _account: any = null;
+      private _publicKey: Web3PublicKey | null = null;
+      get publicKey() { return this._publicKey; }
+      get connected() { return !!this._publicKey; }
+      async connect(): Promise<void> {
+        if (this.connecting) return;
+        this.connecting = true;
+        try {
+          const conn = w.features?.[StandardConnect]?.connect;
+          const out = await conn?.();
+          const account = out?.accounts?.[0] ?? w.accounts?.[0];
+          if (!account) throw new Error('No account');
+          this._account = account;
+          // account.publicKey may be Uint8Array; account.address is base58
+          const pk = (account.publicKey && account.publicKey.length)
+            ? new Web3PublicKey(account.publicKey)
+            : new Web3PublicKey(account.address);
+          this._publicKey = pk;
+          const feat = w.features?.[SolanaSignTransaction];
+          const vers = feat?.supportedTransactionVersions ?? ['legacy', 0];
+          this.supportedTransactionVersions = new Set(vers as any[]);
+          this.emit('connect');
+        } finally {
+          this.connecting = false;
+        }
+      }
+      async disconnect(): Promise<void> {
+        try {
+          const disc = w.features?.[StandardDisconnect]?.disconnect;
+          await disc?.();
+        } finally {
+          this._account = null;
+          this._publicKey = null;
+          this.emit('disconnect');
+        }
+      }
+      async signTransaction<T extends Transaction | VersionedTransaction>(tx: T): Promise<T> {
+        const feat = w.features?.[SolanaSignTransaction];
+        if (!feat?.signTransaction) throw new Error('Wallet does not support signTransaction');
+        const isV = 'version' in tx;
+        const bytes = isV
+          ? (tx as VersionedTransaction).serialize({ requireAllSignatures: false, verifySignatures: false })
+          : (tx as Transaction).serialize({ requireAllSignatures: false });
+        const [res] = await feat.signTransaction({
+          account: this._account,
+          transaction: bytes,
+        } as any);
+        const signed = res?.signedTransaction as Uint8Array;
+        if (!signed) throw new Error('Signing failed');
+        return (isV ? VersionedTransaction.deserialize(signed) : Transaction.from(signed)) as T;
+      }
+    }
+    return new StdAdapter();
   }
 
   async function connectWith(adapter: WalletAdapter): Promise<void> {
@@ -286,6 +363,13 @@ export function initMintPage(): void {
         explorerEl.href = url;
         explorerEl.style.display = 'inline-block';
       }
+
+      // Trigger mascot cheer if present
+      try {
+        // @ts-ignore
+        const mascot = document.getElementById('mint-mascot') as any;
+        mascot?.cheer?.();
+      } catch {}
 
       // Confetti burst (respect reduced motion)
       try {

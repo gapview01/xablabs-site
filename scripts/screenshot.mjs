@@ -79,8 +79,12 @@ async function takeScreens() {
       </div>`;
     });
   }
-  await page.waitForSelector('.lightbox');
-  await page.screenshot({ path: path.join(outDir, 'detail.png') });
+  try {
+    await page.waitForSelector('.lightbox', { timeout: 5000 });
+    await page.screenshot({ path: path.join(outDir, 'detail.png') });
+  } catch {
+    // Skip detail shot if lightbox didn't appear
+  }
 
   // Mobile screenshots
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });

@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import pieces from '../../data/celebveg.json';
+import Mascot from '../../components/MascotParsnip.astro';
+import mint from '../../data/mint.json';
 
 const title = 'CelebVeg — History’s greatest figures have been… reduced.';
 const description =
@@ -8,45 +10,19 @@ const description =
 ---
 
 <Base title={title} description={description} image="/assets/banner_v3.jpg">
-  <section class="hero">
-    <div class="container">
-      <span class="badge">By Xab Labs</span>
-      <h1>History’s greatest figures have been… reduced.</h1>
-      <p class="lede">
-        Photorealistic long-dead historical figures turned into vegetables, fruit and household objects,
-        with pun names and deadpan descriptions.
-      </p>
-      <div class="cta">
-        <span class="badge-cream">2,000 total • 3% royalties • Metaplex Core on Solana</span>
-        <a class="btn" href="/celebveg/mint">Mint now — 1 SOL</a>
-      </div>
-    </div>
-    <!-- Floating collage hero -->
-    <div style="position:relative; isolation:isolate; margin-top:18px;">
-      <div class="container" style="position:relative;">
-        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-          <div class="frame wobble floaty" style="width:min(42vw,220px);">
-            <div class="inner">
-              <img src="/celebveg/thumbs/0001.webp" alt="NAPOLEON BONAPART-SNIP" loading="lazy" />
-            </div>
-          </div>
-          <div class="frame wobble floaty" style="width:min(42vw,220px); animation-delay:.3s;">
-            <div class="inner">
-              <img src="/celebveg/thumbs/0002.webp" alt="CLEOPEACHTRA" loading="lazy" />
-            </div>
-          </div>
-          <div class="frame wobble floaty" style="width:min(42vw,220px); animation-delay:.6s;">
-            <div class="inner">
-              <img src="/celebveg/thumbs/0005.webp" alt="VINCENT VAN GRAPE" loading="lazy" />
-            </div>
-          </div>
-          <div class="frame wobble floaty" style="width:min(42vw,220px); animation-delay:.15s;">
-            <div class="inner">
-              <img src="/celebveg/thumbs/0010.webp" alt="LUDWIG VAN BEET" loading="lazy" />
-            </div>
-          </div>
+  <section class="hero bg-blobs">
+    <div class="container layout">
+      <div>
+        <span class="badge">By Xab Labs</span>
+        <h1>History, but make it veg.</h1>
+        <p class="lede">Deadpan icons. Photoreal. On Solana.</p>
+        <div class="cta">
+          <span class="badge-cream">2,000 total • 3% royalties • Metaplex Core</span>
+          <a class="btn" href="/celebveg/mint">Mint — {mint.priceSol} SOL</a>
+          <a class="btn secondary" href="#cast">See the collection</a>
         </div>
       </div>
+      <Mascot size="lg" />
     </div>
   </section>
 
@@ -66,15 +42,15 @@ const description =
     </div>
   </div>
 
-  <section class="container mt-6">
-    <h2 class="section-title">Wave 1 — 10 pieces</h2>
-    <p class="mt-2 mb-6">1 SOL each. Every later wave costs more. Early is best.</p>
+  <section class="container mt-6" id="cast">
+    <h2 class="section-title">Meet the cast</h2>
+    <p class="mt-2 mb-6">Wave 1 — 10 pieces at {mint.priceSol} SOL. Early is best.</p>
 
     <div class="grid">
       {pieces.map((p, i) => (
         <article class="card piece reveal" data-index={i}>
           <a href={"#piece-" + p.id} class="open-lightbox" aria-label={"Open " + p.name}>
-            <div class="frame wobble">
+            <div class="frame wobble tilt3d">
               <div class="inner">
                 <img
                   src={p.thumb}
@@ -97,27 +73,27 @@ const description =
   </section>
 
   <section class="container mt-10">
-    <h2 class="section-title">How it works / Waves</h2>
+    <h2 class="section-title">Waves</h2>
     <div class="waves">
       <div class="wave live reveal">
         <div class="dot" aria-hidden="true"></div>
         <div class="content">
-          <div class="label">Wave 1 — live</div>
-          <div class="note">10 pieces at 1 SOL. Early is best.</div>
+          <div class="label">Wave I — live</div>
+          <div class="note">10 pieces at {mint.priceSol} SOL. Early is best.</div>
         </div>
       </div>
       <div class="wave coming reveal">
         <div class="dot" aria-hidden="true"></div>
         <div class="content">
-          <div class="label">Wave 2 — coming</div>
-          <div class="note">Costs more. Fewer pieces.</div>
+          <div class="label">Wave II — coming</div>
+          <div class="note">Costs more. More plentiful.</div>
         </div>
       </div>
       <div class="wave coming reveal">
         <div class="dot" aria-hidden="true"></div>
         <div class="content">
-          <div class="label">Waves 3–n — coming</div>
-          <div class="note">Still reduced. Still funny. Still more expensive.</div>
+          <div class="label">Waves III–n — coming</div>
+          <div class="note">Reduced. Funny. Rising price.</div>
         </div>
       </div>
     </div>
@@ -125,9 +101,9 @@ const description =
 
   <section class="container mt-8">
     <h2 class="section-title">Mint</h2>
-    <p class="mt-2">Wave 1 is live. 10 pieces at 1 SOL. Early is best.</p>
+    <p class="mt-2">Live now. {mint.priceSol} SOL. Early is best.</p>
     <div class="mt-3" style="display:flex; flex-wrap:wrap; gap:12px;">
-      <a class="btn" href="/celebveg/mint">Mint now — 1 SOL</a>
+      <a class="btn" href="/celebveg/mint">Mint — {mint.priceSol} SOL</a>
     </div>
   </section>
 
@@ -140,7 +116,7 @@ const description =
         <button class="btn copy" type="button" data-copy="#collection-address">Copy</button>
       </div>
       <div class="row" style="color:#cbd5e1">
-        <div>Price 1 SOL • Paid to Xab Labs • 3% royalties • Metaplex Core on Solana • <a href="https://x.com/xablabs" target="_blank" rel="noopener" style="color:white; text-decoration:underline;">@xablabs</a></div>
+        <div>Price {mint.priceSol} SOL • Paid to Xab Labs • 3% royalties • Metaplex Core • Arweave storage • <a href="https://x.com/xablabs" target="_blank" rel="noopener" style="color:white; text-decoration:underline;">@xablabs</a></div>
       </div>
     </div>
   </section>
@@ -154,7 +130,7 @@ const description =
 
   <div id="lightbox-root"></div>
 
-  <script define:vars={{ pieces }}>
+  <script define:vars={{ pieces, price: mint.priceSol }}>
     // Copy helper
     document.querySelectorAll('[data-copy]').forEach((btn) => {
       btn.addEventListener('click', async () => {
@@ -184,7 +160,7 @@ const description =
           <div class="body">
             <div class="img"><img src="${p.image}" alt="${p.name}" /></div>
             <div class="details">
-              <div class="badge-cream">Wave 1 • 1 SOL • 3% royalties</div>
+              <div class="badge-cream">Wave 1 • ${price} SOL • 3% royalties</div>
               <p class="mt-3">${p.description}</p>
               <div class="attrs mt-4">
                 ${(p.attributes || [])
@@ -194,7 +170,7 @@ const description =
                   .join('')}
               </div>
               <div class="mt-6" style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn" href="/celebveg/mint">Mint now — 1 SOL</a>
+                <a class="btn" href="/celebveg/mint">Mint — ${price} SOL</a>
               </div>
             </div>
           </div>
@@ -225,6 +201,26 @@ const description =
       const idx = pieces.findIndex((p) => String(p.id) === id);
       if (idx >= 0) open(idx);
     }
+  </script>
+
+  <script>
+    // Lightweight 3D tilt for framed cards
+    const els = document.querySelectorAll<HTMLElement>('.tilt3d');
+    els.forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rx = (0.5 - y) * 8;
+        const ry = (x - 0.5) * 12;
+        el.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+        el.style.setProperty('--ry', ry.toFixed(2) + 'deg');
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.removeProperty('--rx');
+        el.style.removeProperty('--ry');
+      });
+    });
   </script>
 </Base>
 

@@ -1,0 +1,159 @@
+---
+export interface Props {
+  size?: 'lg' | 'sm';
+  id?: string;
+}
+const { size = 'lg', id } = Astro.props as Props;
+const scale = size === 'lg' ? 1 : 0.6;
+---
+
+<div class={`mascot ${size}`} id={id} aria-hidden="true">
+  <svg
+    width={Math.round(360 * scale)}
+    height={Math.round(360 * scale)}
+    viewBox="0 0 360 360"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="mascot-svg"
+    role="img"
+  >
+    <title>Parsnip with a Napoleon bicorne, friendly and animated</title>
+    <!-- Soft shadow -->
+    <ellipse cx="180" cy="330" rx="90" ry="22" fill="rgba(0,0,0,0.15)" />
+    <!-- Body -->
+    <g class="body" filter="url(#shadow)">
+      <path
+        d="M180 40 C 240 40, 285 90, 280 150 C 270 260, 220 305, 180 318 C 140 305, 90 260, 80 150 C 75 90, 120 40, 180 40 Z"
+        fill="#F7E7B7"
+        stroke="#E7D299"
+        stroke-width="3"
+      />
+      <!-- Subtle vertical ribs -->
+      <path d="M180 60 C 200 120, 200 220, 180 300" stroke="#EAD9AA" stroke-width="2" opacity="0.6" />
+      <path d="M165 65 C 175 120, 175 220, 165 295" stroke="#EAD9AA" stroke-width="2" opacity="0.45" />
+      <path d="M195 65 C 205 120, 205 220, 195 295" stroke="#EAD9AA" stroke-width="2" opacity="0.45" />
+    </g>
+    <!-- Eyes -->
+    <g class="eyes">
+      <g class="eye" transform="translate(145 150)">
+        <circle cx="0" cy="0" r="22" fill="white" stroke="#0b1020" stroke-width="3" />
+        <circle class="pupil" cx="0" cy="0" r="8" fill="#0b1020" />
+        <rect class="lid" x="-24" y="-24" width="48" height="48" fill="#F7E7B7" />
+      </g>
+      <g class="eye" transform="translate(215 150)">
+        <circle cx="0" cy="0" r="22" fill="white" stroke="#0b1020" stroke-width="3" />
+        <circle class="pupil" cx="0" cy="0" r="8" fill="#0b1020" />
+        <rect class="lid" x="-24" y="-24" width="48" height="48" fill="#F7E7B7" />
+      </g>
+    </g>
+    <!-- Mouth -->
+    <g class="mouth">
+      <path d="M150 205 Q 180 225 210 205" stroke="#0b1020" stroke-width="5" stroke-linecap="round" fill="none" />
+      <circle class="surprised" cx="180" cy="210" r="12" fill="#0b1020" opacity="0" />
+    </g>
+    <!-- Hat: bicorne -->
+    <g class="hat" transform="translate(180 90)">
+      <path d="M-95 -10 C -40 -35, 40 -35, 95 -10 C 65 -20, -65 -20, -95 -10 Z" fill="#0b1020" />
+      <path d="M-82 -12 C -38 -30, 38 -30, 82 -12" stroke="#c7a768" stroke-width="6" fill="none" />
+      <circle cx="-50" cy="-18" r="5" fill="#c7a768" />
+      <circle cx="50" cy="-18" r="5" fill="#c7a768" />
+    </g>
+    <defs>
+      <filter id="shadow" x="0" y="0" width="360" height="360" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="rgba(13,29,80,0.18)" />
+      </filter>
+    </defs>
+  </svg>
+</div>
+
+<style>
+  .mascot {
+    --eye-x: 0px;
+    --eye-y: 0px;
+    display: inline-grid;
+    place-items: center;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: 50% 80%;
+    animation: mascot-idle 3.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .mascot.sm .mascot-svg { transform: translateZ(0); }
+  .mascot .eye .pupil {
+    transform: translate(var(--eye-x), var(--eye-y));
+    transition: transform 120ms ease;
+  }
+  .mascot:hover { animation-duration: 2.6s; }
+  @keyframes mascot-idle {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.01); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  /* Blink */
+  .mascot .lid {
+    transform-origin: 50% 0%;
+    animation: blink 5s infinite;
+    opacity: 0;
+  }
+  @keyframes blink {
+    0%, 92%, 100% { opacity: 0; transform: scaleY(0); }
+    94%, 96% { opacity: 1; transform: scaleY(1); }
+  }
+  /* Hover / tap surprise */
+  .mascot.is-surprised .mouth path { opacity: 0; }
+  .mascot.is-surprised .surprised { opacity: 1; transition: opacity .12s ease; }
+  .mascot.is-surprised { animation: surprise 400ms ease; }
+  @keyframes surprise {
+    0% { transform: translateY(0) scale(1); }
+    30% { transform: translateY(-14px) scale(1.03); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  /* Cheer */
+  .mascot.cheer { animation: cheer 800ms ease; }
+  @keyframes cheer {
+    0% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-10px) rotate(-3deg); }
+    50% { transform: translateY(-4px) rotate(3deg); }
+    100% { transform: translateY(0) rotate(0); }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const root = document.currentScript?.closest('.mascot') as HTMLElement | null;
+    if (!root) return;
+    const svg = root.querySelector('svg')!;
+    let lastX = 0, lastY = 0;
+    const max = 6; // pupil travel
+    function setEyes(x: number, y: number) {
+      root.style.setProperty('--eye-x', `${x}px`);
+      root.style.setProperty('--eye-y', `${y}px`);
+    }
+    function onMove(ev: MouseEvent) {
+      const rect = svg.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = Math.max(-1, Math.min(1, (ev.clientX - cx) / (rect.width / 2)));
+      const dy = Math.max(-1, Math.min(1, (ev.clientY - cy) / (rect.height / 2)));
+      lastX = dx * max;
+      lastY = dy * max;
+      setEyes(lastX, lastY);
+    }
+    function onLeave() { setEyes(0, 0); }
+    function surprise() {
+      root.classList.add('is-surprised');
+      window.setTimeout(() => root.classList.remove('is-surprised'), 500);
+    }
+    svg.addEventListener('mousemove', onMove);
+    svg.addEventListener('mouseleave', onLeave);
+    svg.addEventListener('click', surprise);
+    svg.addEventListener('touchstart', (e) => { surprise(); }, { passive: true });
+    // Expose a cheer method for mint success
+    // @ts-ignore
+    root.cheer = () => {
+      root.classList.add('cheer');
+      window.setTimeout(() => root.classList.remove('cheer'), 900);
+    };
+  })();
+</script>
+
