@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Mascot from '../../components/MascotParsnip.astro';
 import mint from '../../data/mint.json';
+import animations from '../../data/animations.json';
 ---
 
 <Base
@@ -28,7 +29,17 @@ import mint from '../../data/mint.json';
     <div class="stack" style="max-width:38rem">
       <div class="frame">
         <div class="inner">
-          <img src="/celebveg/thumbs/0001.webp" alt="Featured: NAPOLEON BONAPART-SNIP" loading="lazy" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+          {
+            animations['0001'] ? (
+              <div class="anim-piece" data-anim={animations['0001']} data-id="0001" data-name="NAPOLEON BONAPART-SNIP">
+                <img class="still" src="/celebveg/thumbs/0001.webp" alt="Featured: NAPOLEON BONAPART-SNIP" loading="lazy" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+                <video class="clip" src={animations['0001']} preload="metadata" playsinline muted style="width:100%; height:auto; aspect-ratio:1/1; object-fit:cover;"></video>
+                <button class="mute-toggle" type="button" aria-pressed="false">Unmute</button>
+              </div>
+            ) : (
+              <img src="/celebveg/thumbs/0001.webp" alt="Featured: NAPOLEON BONAPART-SNIP" loading="lazy" style="width:100%; aspect-ratio:1/1; object-fit:cover;" />
+            )
+          }
         </div>
       </div>
       <div class="badge-cream" aria-live="polite">
@@ -87,7 +98,9 @@ import mint from '../../data/mint.json';
 
   <script type="module">
     import { initMintPage } from '../../scripts/celebveg-mint.ts';
+    import { initAnimatePieces } from '../../scripts/animate-pieces.ts';
     initMintPage();
+    initAnimatePieces();
   </script>
 </Base>
 
