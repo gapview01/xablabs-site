@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Mint CelebVeg wave 1 — 1 SOL"
+  description="Mint one of 10 CelebVeg wave 1 pieces at 1 SOL. Early is best. Connect Phantom to mint."
+  image="/assets/banner_v3.jpg"
+>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">Wave 1 • CelebVeg</span>
+      <h1>Mint now — 1 SOL</h1>
+      <p class="lede">
+        Ten pieces. Then wave 1 is history (again). Every later wave costs more.
+        <strong>Early is best.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section class="container mt-6">
+    <div class="stack" style="max-width:36rem">
+      <div class="badge-cream">
+        <span id="mint-remaining">–</span> / <span id="mint-available">10</span> remaining
+      </div>
+      <p>Price is 1 SOL, paid to the Xab Labs wallet, plus about 0.003 SOL in network fees.</p>
+      <p class="muted">
+        Collection: <a id="collection-link" href="https://explorer.solana.com/address/CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC" target="_blank" rel="noopener">CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC</a>
+      </p>
+      <p>
+        Wallet: <strong id="wallet-address">Not connected</strong>
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button id="connect-button" class="btn secondary" type="button">Connect Phantom</button>
+        <button id="mint-button" class="btn" type="button" disabled>Mint now — 1 SOL</button>
+      </div>
+      <p id="mint-message">Connect Phantom to mint.</p>
+      <p style="display:none;">
+        <a id="mint-explorer" class="btn secondary" href="#" target="_blank" rel="noopener">View your piece on Solana Explorer</a>
+      </p>
+      <p class="mt-6">
+        <a class="btn secondary" href="/celebveg">← Back to the collection</a>
+      </p>
+    </div>
+  </section>
+
+  <script type="module">
+    import { initMintPage } from '../../scripts/celebveg-mint.ts';
+    initMintPage();
+  </script>
+</Base>
+
