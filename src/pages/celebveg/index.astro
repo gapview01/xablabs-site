@@ -52,14 +52,40 @@ const description =
           <a href={"#piece-" + p.id} class="open-lightbox" aria-label={"Open " + p.name}>
             <div class="frame wobble tilt3d">
               <div class="inner">
-                <img
-                  src={p.thumb}
-                  alt={p.name}
-                  loading="lazy"
-                  width="720"
-                  height="720"
-                  style="aspect-ratio:1/1; object-fit:cover;"
-                />
+                {
+                  p.animation ? (
+                    <div class="anim-piece" data-anim={p.animation} data-id={p.id} data-name={p.name}>
+                      <img
+                        class="still"
+                        src={p.thumb}
+                        alt={p.name}
+                        loading="lazy"
+                        width="720"
+                        height="720"
+                        style="aspect-ratio:1/1; object-fit:cover;"
+                      />
+                      <video
+                        class="clip"
+                        src={p.animation}
+                        preload="metadata"
+                        playsinline
+                        muted
+                        width="720"
+                        height="720"
+                      ></video>
+                      <button class="mute-toggle" type="button" aria-pressed="false">Unmute</button>
+                    </div>
+                  ) : (
+                    <img
+                      src={p.thumb}
+                      alt={p.name}
+                      loading="lazy"
+                      width="720"
+                      height="720"
+                      style="aspect-ratio:1/1; object-fit:cover;"
+                    />
+                  )
+                }
               </div>
             </div>
           </a>
@@ -221,6 +247,10 @@ const description =
         el.style.removeProperty('--ry');
       });
     });
+  </script>
+  <script type="module">
+    import { initAnimatePieces } from '../../scripts/animate-pieces.ts';
+    initAnimatePieces();
   </script>
 </Base>
 

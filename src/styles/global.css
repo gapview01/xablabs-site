@@ -324,6 +324,39 @@ footer .muted {
   font-weight: 800;
 }
 
+/* Animated piece */
+.anim-piece {
+  position: relative;
+  display: block;
+}
+.anim-piece .clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease;
+  border-radius: inherit;
+}
+.anim-piece .mute-toggle {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 2;
+  display: none;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.anim-piece.is-playing .mute-toggle {
+  display: inline-flex;
+}
+
 /* 3D tilt */
 .tilt3d {
   transform-style: preserve-3d;

@@ -42,6 +42,17 @@ async function buildPieces() {
   const entries = await fsp.readdir(uploadsDir);
   const jsonFiles = entries.filter((f) => f.endsWith('.json') && /^\d{4}_/.test(f) && !f.includes('collection'));
   const imageFiles = entries.filter((f) => /\.(png|jpe?g|webp)$/i.test(f) && /^\d{4}_/.test(f));
+  // Optional animations mapping
+  /** @type {Record<string, string>} */
+  let animations = {};
+  try {
+    const animPath = path.join(root, 'src', 'data', 'animations.json');
+    if (fs.existsSync(animPath)) {
+      animations = JSON.parse(await fsp.readFile(animPath, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Could not load animations.json', e);
+  }
 
   /** @type {Record<string, { json?: string; image?: string }>} */
   const byPrefix = {};
@@ -82,7 +93,7 @@ async function buildPieces() {
     // Create thumb
     await sharp(imgPath).resize({ width: 720, height: 720, fit: 'cover' }).webp({ quality: 86 }).toFile(destThumb);
 
-    pieces.push({
+    const piece = {
       id: prefix,
       name: meta.name,
       description: meta.description,
@@ -93,7 +104,16 @@ async function buildPieces() {
       attributes: Array.isArray(meta.attributes) ? meta.attributes : [],
       image: `/celebveg/originals/${baseName}`,
       thumb: `/celebveg/thumbs/${prefix}.webp`,
-    });
+    };
+    if (animations[prefix]) {
+      // Basic validation: only accept http(s) URLs
+      const url = String(animations[prefix]);
+      if (/^https?:\/\//i.test(url)) {
+        // @ts-ignore
+        piece.animation = url;
+      }
+    }
+    pieces.push(piece);
   }
 
   // Sort numerically
