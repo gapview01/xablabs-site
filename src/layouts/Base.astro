@@ -23,7 +23,10 @@ const absoluteImage = new URL(image, Astro.site).href;
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titan+One&family=Space+Grotesk:wght@400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles/global.css" />
     <title>{title}</title>
 
@@ -71,6 +74,23 @@ const absoluteImage = new URL(image, Astro.site).href;
         });
       }
     });
+    // Minimal scroll reveal
+    (function () {
+      const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+      if (prefersReduced) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+      );
+      document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => io.observe(el));
+    })();
   </script>
 </html>
 

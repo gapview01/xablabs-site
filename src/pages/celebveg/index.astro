@@ -17,11 +17,54 @@ const description =
         with pun names and deadpan descriptions.
       </p>
       <div class="cta">
-        <span class="badge-cream">2,000 total • 3% royalties • Marketplace-agnostic</span>
+        <span class="badge-cream">2,000 total • 3% royalties • Metaplex Core on Solana</span>
         <a class="btn" href="/celebveg/mint">Mint now — 1 SOL</a>
       </div>
     </div>
+    <!-- Floating collage hero -->
+    <div style="position:relative; isolation:isolate; margin-top:18px;">
+      <div class="container" style="position:relative;">
+        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <div class="frame wobble floaty" style="width:min(42vw,220px);">
+            <div class="inner">
+              <img src="/celebveg/thumbs/0001.webp" alt="NAPOLEON BONAPART-SNIP" loading="lazy" />
+            </div>
+          </div>
+          <div class="frame wobble floaty" style="width:min(42vw,220px); animation-delay:.3s;">
+            <div class="inner">
+              <img src="/celebveg/thumbs/0002.webp" alt="CLEOPEACHTRA" loading="lazy" />
+            </div>
+          </div>
+          <div class="frame wobble floaty" style="width:min(42vw,220px); animation-delay:.6s;">
+            <div class="inner">
+              <img src="/celebveg/thumbs/0005.webp" alt="VINCENT VAN GRAPE" loading="lazy" />
+            </div>
+          </div>
+          <div class="frame wobble floaty" style="width:min(42vw,220px); animation-delay:.15s;">
+            <div class="inner">
+              <img src="/celebveg/thumbs/0010.webp" alt="LUDWIG VAN BEET" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="marquee__item">NAPOLEON BONAPART-SNIP</span>
+      <span class="marquee__item">CLEOPEACHTRA</span>
+      <span class="marquee__item">ABRAHAM LIME-COLN</span>
+      <span class="marquee__item">ARCHIMEDEAS</span>
+      <span class="marquee__item">VINCENT VAN GRAPE</span>
+      <span class="marquee__item">JOAN OF KALE</span>
+      <span class="marquee__item">ALEXANDER THE GRATE</span>
+      <span class="marquee__item">FRANCIS BACON</span>
+      <span class="marquee__item">SIR FRANCIS DRAKE</span>
+      <span class="marquee__item">LUDWIG VAN BEET</span>
+      <span class="marquee__item">History’s greatest figures have been… reduced.</span>
+    </div>
+  </div>
 
   <section class="container mt-6">
     <h2 class="section-title">Wave 1 — 10 pieces</h2>
@@ -29,16 +72,20 @@ const description =
 
     <div class="grid">
       {pieces.map((p, i) => (
-        <article class="card piece" data-index={i}>
+        <article class="card piece reveal" data-index={i}>
           <a href={"#piece-" + p.id} class="open-lightbox" aria-label={"Open " + p.name}>
-            <img
-              src={p.thumb}
-              alt={p.name}
-              loading="lazy"
-              width="720"
-              height="720"
-              style="aspect-ratio:1/1; object-fit:cover;"
-            />
+            <div class="frame wobble">
+              <div class="inner">
+                <img
+                  src={p.thumb}
+                  alt={p.name}
+                  loading="lazy"
+                  width="720"
+                  height="720"
+                  style="aspect-ratio:1/1; object-fit:cover;"
+                />
+              </div>
+            </div>
           </a>
           <div class="meta">
             <div class="name">{p.name}</div>
@@ -51,14 +98,28 @@ const description =
 
   <section class="container mt-10">
     <h2 class="section-title">How it works / Waves</h2>
-    <div class="stack">
-      <p>
-        CelebVeg is one collection with <strong>2,000 total pieces</strong>, released in waves.
-        Wave 1 has <strong>10 pieces at 1 SOL each</strong>. Every later wave costs more. <strong>Early is best.</strong>
-      </p>
-      <p>
-        Royalties are <strong>3%</strong>. Marketplace-agnostic: likely Magic Eden, maybe Tensor.
-      </p>
+    <div class="waves">
+      <div class="wave live reveal">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="content">
+          <div class="label">Wave 1 — live</div>
+          <div class="note">10 pieces at 1 SOL. Early is best.</div>
+        </div>
+      </div>
+      <div class="wave coming reveal">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="content">
+          <div class="label">Wave 2 — coming</div>
+          <div class="note">Costs more. Fewer pieces.</div>
+        </div>
+      </div>
+      <div class="wave coming reveal">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="content">
+          <div class="label">Waves 3–n — coming</div>
+          <div class="note">Still reduced. Still funny. Still more expensive.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -67,6 +128,20 @@ const description =
     <p class="mt-2">Wave 1 is live. 10 pieces at 1 SOL. Early is best.</p>
     <div class="mt-3" style="display:flex; flex-wrap:wrap; gap:12px;">
       <a class="btn" href="/celebveg/mint">Mint now — 1 SOL</a>
+    </div>
+  </section>
+
+  <section class="container mt-10 reveal">
+    <div class="trustbar" role="note" aria-label="Trust and verification">
+      <div class="row">
+        <div><strong>Collection</strong></div>
+        <code class="mono" id="collection-address">CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC</code>
+        <a class="btn secondary" target="_blank" rel="noopener" href="https://explorer.solana.com/address/CFuLSYMno9vMaiGUkkMHVyrpwhJcdCXMunVpaNAMmZTC">View on Solana Explorer</a>
+        <button class="btn copy" type="button" data-copy="#collection-address">Copy</button>
+      </div>
+      <div class="row" style="color:#cbd5e1">
+        <div>Price 1 SOL • Paid to Xab Labs • 3% royalties • Metaplex Core on Solana • <a href="https://x.com/xablabs" target="_blank" rel="noopener" style="color:white; text-decoration:underline;">@xablabs</a></div>
+      </div>
     </div>
   </section>
 
@@ -80,6 +155,21 @@ const description =
   <div id="lightbox-root"></div>
 
   <script define:vars={{ pieces }}>
+    // Copy helper
+    document.querySelectorAll('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const sel = (btn as HTMLElement).getAttribute('data-copy')!;
+        const el = document.querySelector(sel);
+        if (!el) return;
+        const text = (el.textContent || '').trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          (btn as HTMLButtonElement).textContent = 'Copied';
+          window.setTimeout(() => ((btn as HTMLButtonElement).textContent = 'Copy'), 1200);
+        } catch {}
+      });
+    });
+
     const root = document.getElementById('lightbox-root')!;
     function open(index) {
       const p = pieces[index];
